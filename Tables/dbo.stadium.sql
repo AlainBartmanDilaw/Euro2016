@@ -4,6 +4,8 @@ CREATE TABLE [dbo].[stadium]
 [Nom] [nvarchar] (100) COLLATE French_CI_AS NOT NULL,
 [Towns_Idt] [int] NOT NULL
 ) ON [PRIMARY]
+ALTER TABLE [dbo].[stadium] ADD
+CONSTRAINT [Stadium_Towns_Fk] FOREIGN KEY ([Towns_Idt]) REFERENCES [dbo].[towns] ([Idt])
 GO
 ALTER TABLE [dbo].[stadium] ADD CONSTRAINT [PK_stadium_Idt] PRIMARY KEY CLUSTERED  ([Idt]) ON [PRIMARY]
 GO

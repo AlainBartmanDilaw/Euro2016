@@ -7,6 +7,10 @@ CREATE TABLE [dbo].[matchsteam]
 [Score] [smallint] NULL CONSTRAINT [DF__matchstea__Score__6A30C649] DEFAULT (NULL),
 [Calc] [nvarchar] (100) COLLATE French_CI_AS NULL CONSTRAINT [DF__matchsteam__Calc__6B24EA82] DEFAULT (NULL)
 ) ON [PRIMARY]
+ALTER TABLE [dbo].[matchsteam] ADD
+CONSTRAINT [MatchsTeam_Match_Fk] FOREIGN KEY ([Matchs_Idt]) REFERENCES [dbo].[matchs] ([Idt])
+ALTER TABLE [dbo].[matchsteam] ADD
+CONSTRAINT [MatchsTeam_Team_Fk] FOREIGN KEY ([team_idt]) REFERENCES [dbo].[team] ([Idt])
 GO
 ALTER TABLE [dbo].[matchsteam] ADD CONSTRAINT [PK_matchsteam_Idt] PRIMARY KEY CLUSTERED  ([Idt]) ON [PRIMARY]
 GO
