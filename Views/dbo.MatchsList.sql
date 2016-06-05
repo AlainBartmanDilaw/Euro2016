@@ -1,3 +1,4 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
@@ -7,16 +8,18 @@ AS
 SELECT m.Idt
      , m.Number
      , m.Groups_Cod
-     , m.[Schedule Date] ScheduleDate
+     , m.ScheduleDate
      , p.Idt     Phase_Idt
      , p.Lbl     Phase_Lbl
      , s.Nom     Stadium_Name
      , t.Nom     Town_Name
      , th.Cod    Team_Home
      , th.Lbl    Team_Home_Label
+     , '/Images/Flags/' + th.Lbl + '.png' ImageHome 
      , mh.Score  Score_Home
      , ta.Cod    Team_Away
      , ta.Lbl    Team_Away_Label
+     , '/Images/Flags/' + ta.Lbl + '.png' ImageAway 
      , ma.Score  Score_Away
   FROM dbo.matchs m
  INNER JOIN dbo.stadium    s  ON s.Idt         = m.Stadium_Idt

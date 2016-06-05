@@ -2,7 +2,7 @@ CREATE TABLE [dbo].[matchsteam]
 (
 [Idt] [int] NOT NULL IDENTITY(103, 1),
 [Matchs_Idt] [int] NOT NULL CONSTRAINT [DF__matchstea__Match__6754599E] DEFAULT ((0)),
-[AwayHome] [nvarchar] (1) COLLATE French_CI_AS NOT NULL CONSTRAINT [DF__matchstea__AwayH__68487DD7] DEFAULT (N''),
+[AwayHome] [char] (1) COLLATE French_CI_AS NULL CONSTRAINT [DF__matchstea__AwayH__395884C4] DEFAULT ('X'),
 [team_idt] [int] NULL CONSTRAINT [DF__matchstea__team___693CA210] DEFAULT (NULL),
 [Score] [smallint] NULL CONSTRAINT [DF__matchstea__Score__6A30C649] DEFAULT (NULL),
 [Calc] [nvarchar] (100) COLLATE French_CI_AS NULL CONSTRAINT [DF__matchsteam__Calc__6B24EA82] DEFAULT (NULL)
