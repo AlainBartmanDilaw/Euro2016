@@ -1,18 +1,23 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
 CREATE VIEW [dbo].[UsrMatch]
 AS
-select x.*                                                                                          
-     , bh.Idt Bet_Idt_Home
-     , isnull(bh.[Score], '-1') HomeScore                                                    
-     , ba.Idt Bet_Idt_Away
-     , isnull(ba.[Score], '-1') AwayScore
+select x.*
+     , bh.Idt             Bet_Idt_Home
+     , bh.Score           HomeScore                                                    
+     , ba.Idt             Bet_Idt_Away
+     , ba.Score           AwayScore
      , ml.Idt
      , ml.Number
      , ml.Groups_Cod
      , ml.ScheduleDate
+     , case when ml.ScheduleDate < dbo.CurrentDate()
+       then 1
+       else 0
+       end                Finished
      , ml.Phase_Idt
      , ml.Phase_Lbl
      , ml.Stadium_Name
@@ -24,7 +29,12 @@ select x.*
      , ml.Team_Away
      , ml.Team_Away_Label
      , ml.ImageAway
-     , ml.Score_Away                                            
+     , ml.Score_Away
+     , case isnull(ml.Team_Home, '-') + isnull(ml.Team_Away, '-')
+       when '--'
+       then 0
+       else 1
+       end MatchIsFullFilled
   from (                                                                                            
 select m.Idt Matchs_Idt
      , bt.Idt Usr_Idt                                                                               
